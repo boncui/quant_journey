@@ -1,0 +1,32 @@
+name: frontend
+
+# The React terminal has its own JS toolchain, isolated under command_center/frontend.
+# Path-filtered so it stays decoupled from the Python matrix in ci.yml.
+on:
+  push:
+    paths: ["command_center/frontend/**", "command_center/backend/openapi.json"]
+  pull_request:
+    paths: ["command_center/frontend/**", "command_center/backend/openapi.json"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: command_center/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: command_center/frontend/package-lock.json
+      - run: npm ci
+      - name: API types in sync with backend OpenAPI
+        run: npm run api:check
+      - name: Type-check
+        run: npm run typecheck
+      - name: Unit tests
+        run: npm test
+      - name: Build
+        run: npm run build

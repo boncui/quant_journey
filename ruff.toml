@@ -1,0 +1,30 @@
+# Repo-wide lint + format config for the quant_journey monorepo.
+# Applies to quant_core and every NNN_* project folder.
+
+target-version = "py312"
+line-length = 100
+
+extend-exclude = [
+    ".venv",
+    "**/data",
+    "**/reports",
+]
+
+[lint]
+select = [
+    "E",    # pycodestyle errors
+    "F",    # pyflakes
+    "I",    # isort (import ordering)
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "SIM",  # flake8-simplify
+]
+ignore = [
+    "E501",  # line length handled by the formatter
+]
+# Note: the cross-project import boundary (projects import only quant_core + PyPI,
+# never another project) is enforced by a grep check in CI, not by ruff.
+
+[format]
+quote-style = "double"
+indent-style = "space"

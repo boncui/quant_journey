@@ -1,0 +1,126 @@
+/* command_center design tokens — the single source of truth for color/typography/density.
+   Both chart libraries read these same variables (see chartTheme.ts) so everything matches. */
+
+:root {
+  --cc-bg: #0a0a0b;
+  --cc-surface: #121316;
+  --cc-surface-2: #17181c;
+  --cc-border: #23252b;
+  --cc-fg: #d6d7da;
+  --cc-fg-muted: #7a7d85;
+  --cc-amber: #ffb000;
+  --cc-up: #26a269;
+  --cc-down: #e01b24;
+
+  /* colorblind-safe series palette */
+  --cc-series-1: #4fc3f7;
+  --cc-series-2: #ffb000;
+  --cc-series-3: #ab47bc;
+  --cc-series-4: #66bb6a;
+  --cc-series-5: #ff7043;
+  --cc-series-6: #26c6da;
+  --cc-series-7: #d4e157;
+  --cc-series-8: #ec407a;
+
+  --cc-font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --cc-text-2xs: 10px;
+  --cc-text-xs: 11px;
+  --cc-text-sm: 12px;
+  --cc-text-base: 13px;
+
+  --cc-space-1: 2px;
+  --cc-space-2: 4px;
+  --cc-space-3: 8px;
+  --cc-space-4: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--cc-bg);
+  color: var(--cc-fg);
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-text-base);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- layout ---- */
+.cc-terminal { display: flex; flex-direction: column; height: 100vh; }
+.cc-topbar {
+  display: flex; align-items: center; gap: var(--cc-space-3);
+  padding: var(--cc-space-2) var(--cc-space-3);
+  border-bottom: 1px solid var(--cc-border); background: var(--cc-surface);
+}
+.cc-brand { color: var(--cc-amber); font-weight: 700; letter-spacing: 0.04em; }
+.cc-grid {
+  flex: 1; min-height: 0; display: grid; gap: 1px; background: var(--cc-border);
+  grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; overflow: hidden;
+}
+.cc-statusbar {
+  display: flex; align-items: center; gap: var(--cc-space-4);
+  padding: var(--cc-space-1) var(--cc-space-3); border-top: 1px solid var(--cc-border);
+  background: var(--cc-surface); color: var(--cc-fg-muted); font-size: var(--cc-text-xs);
+}
+
+/* ---- panel ---- */
+.cc-panel { display: flex; flex-direction: column; min-height: 0; background: var(--cc-bg); }
+.cc-panel-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--cc-space-1) var(--cc-space-3); border-bottom: 1px solid var(--cc-border);
+  background: var(--cc-surface-2); font-size: var(--cc-text-xs);
+}
+.cc-panel-title { color: var(--cc-fg); font-weight: 600; }
+.cc-panel-code { color: var(--cc-amber); font-size: var(--cc-text-2xs); }
+.cc-panel-body { flex: 1; min-height: 0; overflow: auto; position: relative; }
+.cc-chart { position: absolute; inset: 0; }
+
+/* ---- table ---- */
+.cc-table { width: 100%; border-collapse: collapse; font-size: var(--cc-text-xs); }
+.cc-table th, .cc-table td {
+  padding: var(--cc-space-1) var(--cc-space-3); text-align: left; white-space: nowrap;
+  border-bottom: 1px solid var(--cc-border);
+}
+.cc-table th { color: var(--cc-fg-muted); font-weight: 600; position: sticky; top: 0; background: var(--cc-surface); }
+.cc-table td.num, .cc-table th.num { text-align: right; }
+.cc-row { cursor: pointer; }
+.cc-row:hover { background: var(--cc-surface-2); }
+.cc-row.sel { background: rgba(255, 176, 0, 0.12); }
+
+/* ---- misc ---- */
+.cc-muted { color: var(--cc-fg-muted); }
+.cc-up { color: var(--cc-up); }
+.cc-down { color: var(--cc-down); }
+.cc-empty {
+  display: flex; align-items: center; justify-content: center; height: 100%;
+  color: var(--cc-fg-muted); font-size: var(--cc-text-sm); text-align: center; padding: var(--cc-space-4);
+}
+.cc-chip {
+  border: 1px solid var(--cc-border); background: var(--cc-surface-2); color: var(--cc-fg);
+  border-radius: 2px; padding: 0 var(--cc-space-2); font-size: var(--cc-text-2xs); cursor: pointer;
+}
+.cc-chip.on { border-color: var(--cc-amber); color: var(--cc-amber); }
+
+/* ---- command palette ---- */
+.cc-palette-backdrop {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5);
+  display: flex; align-items: flex-start; justify-content: center; padding-top: 12vh; z-index: 50;
+}
+.cc-palette { width: min(640px, 92vw); background: var(--cc-surface); border: 1px solid var(--cc-amber); }
+.cc-palette input {
+  width: 100%; background: transparent; border: 0; outline: 0; color: var(--cc-fg);
+  font-family: var(--cc-font-mono); font-size: var(--cc-text-base); padding: var(--cc-space-3);
+  border-bottom: 1px solid var(--cc-border);
+}
+.cc-palette-item { padding: var(--cc-space-2) var(--cc-space-3); display: flex; gap: var(--cc-space-3); cursor: pointer; }
+.cc-palette-item.active { background: rgba(255, 176, 0, 0.12); }
+.cc-palette-item .code { color: var(--cc-amber); min-width: 56px; }

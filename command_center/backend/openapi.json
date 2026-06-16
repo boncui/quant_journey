@@ -1,0 +1,2183 @@
+{
+  "components": {
+    "schemas": {
+      "ActionMarker": {
+        "properties": {
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "t": {
+            "title": "T",
+            "type": "integer"
+          },
+          "value": {
+            "title": "Value",
+            "type": "number"
+          }
+        },
+        "required": [
+          "t",
+          "kind",
+          "value"
+        ],
+        "title": "ActionMarker",
+        "type": "object"
+      },
+      "BetaResponse": {
+        "properties": {
+          "alpha": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Alpha"
+          },
+          "benchmark": {
+            "title": "Benchmark",
+            "type": "string"
+          },
+          "beta": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Beta"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/SeriesMeta"
+          },
+          "n": {
+            "title": "N",
+            "type": "integer"
+          },
+          "r_squared": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "R Squared"
+          },
+          "rolling": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Point"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rolling"
+          },
+          "ticker": {
+            "title": "Ticker",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticker",
+          "benchmark",
+          "beta",
+          "alpha",
+          "r_squared",
+          "n",
+          "meta"
+        ],
+        "title": "BetaResponse",
+        "type": "object"
+      },
+      "CatalogResponse": {
+        "properties": {
+          "count": {
+            "title": "Count",
+            "type": "integer"
+          },
+          "empty": {
+            "title": "Empty",
+            "type": "boolean"
+          },
+          "hint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hint"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/DatasetMetaOut"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "universe": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Universe",
+            "type": "array"
+          }
+        },
+        "required": [
+          "items",
+          "count",
+          "universe",
+          "empty"
+        ],
+        "title": "CatalogResponse",
+        "type": "object"
+      },
+      "CorporateActionsResponse": {
+        "properties": {
+          "adj_factor": {
+            "items": {
+              "$ref": "#/components/schemas/Point"
+            },
+            "title": "Adj Factor",
+            "type": "array"
+          },
+          "dividends": {
+            "items": {
+              "$ref": "#/components/schemas/ActionMarker"
+            },
+            "title": "Dividends",
+            "type": "array"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/SeriesMeta"
+          },
+          "splits": {
+            "items": {
+              "$ref": "#/components/schemas/ActionMarker"
+            },
+            "title": "Splits",
+            "type": "array"
+          },
+          "ticker": {
+            "title": "Ticker",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticker",
+          "adj_factor",
+          "dividends",
+          "splits",
+          "meta"
+        ],
+        "title": "CorporateActionsResponse",
+        "type": "object"
+      },
+      "CorrelationResponse": {
+        "properties": {
+          "clustered": {
+            "title": "Clustered",
+            "type": "boolean"
+          },
+          "matrix": {
+            "items": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "title": "Matrix",
+            "type": "array"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/SeriesMeta"
+          },
+          "method": {
+            "title": "Method",
+            "type": "string"
+          },
+          "tickers": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Tickers",
+            "type": "array"
+          }
+        },
+        "required": [
+          "tickers",
+          "matrix",
+          "method",
+          "clustered",
+          "meta"
+        ],
+        "title": "CorrelationResponse",
+        "type": "object"
+      },
+      "CoverageOut": {
+        "properties": {
+          "end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End"
+          },
+          "interval": {
+            "title": "Interval",
+            "type": "string"
+          },
+          "last_session_gap": {
+            "title": "Last Session Gap",
+            "type": "integer"
+          },
+          "missing_pct": {
+            "title": "Missing Pct",
+            "type": "number"
+          },
+          "n_expected": {
+            "title": "N Expected",
+            "type": "integer"
+          },
+          "n_present": {
+            "title": "N Present",
+            "type": "integer"
+          },
+          "start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start"
+          },
+          "ticker": {
+            "title": "Ticker",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticker",
+          "interval",
+          "start",
+          "end",
+          "n_present",
+          "n_expected",
+          "missing_pct",
+          "last_session_gap"
+        ],
+        "title": "CoverageOut",
+        "type": "object"
+      },
+      "DatasetMetaOut": {
+        "properties": {
+          "end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End"
+          },
+          "fetched_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fetched At"
+          },
+          "interval": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interval"
+          },
+          "modified_at": {
+            "title": "Modified At",
+            "type": "string"
+          },
+          "n_bytes": {
+            "title": "N Bytes",
+            "type": "integer"
+          },
+          "n_rows": {
+            "title": "N Rows",
+            "type": "integer"
+          },
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start"
+          },
+          "tickers": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Tickers",
+            "type": "array"
+          }
+        },
+        "required": [
+          "source",
+          "tickers",
+          "interval",
+          "n_rows",
+          "n_bytes",
+          "start",
+          "end",
+          "modified_at"
+        ],
+        "title": "DatasetMetaOut",
+        "type": "object"
+      },
+      "DistributionResponse": {
+        "properties": {
+          "drawdown": {
+            "items": {
+              "$ref": "#/components/schemas/Point"
+            },
+            "title": "Drawdown",
+            "type": "array"
+          },
+          "histogram": {
+            "$ref": "#/components/schemas/HistogramOut"
+          },
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/SeriesMeta"
+          },
+          "moments": {
+            "$ref": "#/components/schemas/MomentsOut"
+          },
+          "normal": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NormalOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "qq": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/QQOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "ticker": {
+            "title": "Ticker",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticker",
+          "kind",
+          "histogram",
+          "moments",
+          "drawdown",
+          "meta"
+        ],
+        "title": "DistributionResponse",
+        "type": "object"
+      },
+      "Field": {
+        "enum": [
+          "open",
+          "high",
+          "low",
+          "close",
+          "adj_close",
+          "volume"
+        ],
+        "title": "Field",
+        "type": "string"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "HistogramOut": {
+        "properties": {
+          "bin_centers": {
+            "items": {
+              "type": "number"
+            },
+            "title": "Bin Centers",
+            "type": "array"
+          },
+          "bin_edges": {
+            "items": {
+              "type": "number"
+            },
+            "title": "Bin Edges",
+            "type": "array"
+          },
+          "counts": {
+            "items": {
+              "type": "number"
+            },
+            "title": "Counts",
+            "type": "array"
+          },
+          "density": {
+            "title": "Density",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "counts",
+          "bin_edges",
+          "bin_centers",
+          "density"
+        ],
+        "title": "HistogramOut",
+        "type": "object"
+      },
+      "MetaOut": {
+        "properties": {
+          "api": {
+            "default": "v1",
+            "title": "Api",
+            "type": "string"
+          },
+          "quant_core_version": {
+            "title": "Quant Core Version",
+            "type": "string"
+          },
+          "sources": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Sources",
+            "type": "array"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "version",
+          "quant_core_version"
+        ],
+        "title": "MetaOut",
+        "type": "object"
+      },
+      "MomentsOut": {
+        "properties": {
+          "kurtosis_excess": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kurtosis Excess"
+          },
+          "mean": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mean"
+          },
+          "n": {
+            "title": "N",
+            "type": "integer"
+          },
+          "skew": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Skew"
+          },
+          "std": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Std"
+          }
+        },
+        "required": [
+          "n",
+          "mean",
+          "std",
+          "skew",
+          "kurtosis_excess"
+        ],
+        "title": "MomentsOut",
+        "type": "object"
+      },
+      "NamedSeries": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "points": {
+            "items": {
+              "$ref": "#/components/schemas/Point"
+            },
+            "title": "Points",
+            "type": "array"
+          }
+        },
+        "required": [
+          "name",
+          "points"
+        ],
+        "title": "NamedSeries",
+        "type": "object"
+      },
+      "NormalOut": {
+        "properties": {
+          "jb_pvalue": {
+            "title": "Jb Pvalue",
+            "type": "number"
+          },
+          "jb_stat": {
+            "title": "Jb Stat",
+            "type": "number"
+          },
+          "mu": {
+            "title": "Mu",
+            "type": "number"
+          },
+          "sigma": {
+            "title": "Sigma",
+            "type": "number"
+          }
+        },
+        "required": [
+          "mu",
+          "sigma",
+          "jb_stat",
+          "jb_pvalue"
+        ],
+        "title": "NormalOut",
+        "type": "object"
+      },
+      "OHLCVBar": {
+        "properties": {
+          "adj": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Adj"
+          },
+          "c": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "C"
+          },
+          "h": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "H"
+          },
+          "low": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Low"
+          },
+          "o": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "O"
+          },
+          "t": {
+            "title": "T",
+            "type": "integer"
+          },
+          "v": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V"
+          }
+        },
+        "required": [
+          "t",
+          "o",
+          "h",
+          "low",
+          "c",
+          "adj",
+          "v"
+        ],
+        "title": "OHLCVBar",
+        "type": "object"
+      },
+      "OHLCVResponse": {
+        "properties": {
+          "bars": {
+            "items": {
+              "$ref": "#/components/schemas/OHLCVBar"
+            },
+            "title": "Bars",
+            "type": "array"
+          },
+          "interval": {
+            "title": "Interval",
+            "type": "string"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/SeriesMeta"
+          },
+          "ticker": {
+            "title": "Ticker",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticker",
+          "interval",
+          "bars",
+          "meta"
+        ],
+        "title": "OHLCVResponse",
+        "type": "object"
+      },
+      "PerformanceResponse": {
+        "properties": {
+          "base": {
+            "title": "Base",
+            "type": "number"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/SeriesMeta"
+          },
+          "series": {
+            "items": {
+              "$ref": "#/components/schemas/NamedSeries"
+            },
+            "title": "Series",
+            "type": "array"
+          },
+          "tickers": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Tickers",
+            "type": "array"
+          }
+        },
+        "required": [
+          "tickers",
+          "base",
+          "series",
+          "meta"
+        ],
+        "title": "PerformanceResponse",
+        "type": "object"
+      },
+      "Point": {
+        "properties": {
+          "t": {
+            "title": "T",
+            "type": "integer"
+          },
+          "v": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V"
+          }
+        },
+        "required": [
+          "t",
+          "v"
+        ],
+        "title": "Point",
+        "type": "object"
+      },
+      "QQOut": {
+        "properties": {
+          "intercept": {
+            "title": "Intercept",
+            "type": "number"
+          },
+          "sample": {
+            "items": {
+              "type": "number"
+            },
+            "title": "Sample",
+            "type": "array"
+          },
+          "slope": {
+            "title": "Slope",
+            "type": "number"
+          },
+          "theoretical": {
+            "items": {
+              "type": "number"
+            },
+            "title": "Theoretical",
+            "type": "array"
+          }
+        },
+        "required": [
+          "theoretical",
+          "sample",
+          "slope",
+          "intercept"
+        ],
+        "title": "QQOut",
+        "type": "object"
+      },
+      "RefreshRequest": {
+        "properties": {
+          "tickers": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tickers"
+          }
+        },
+        "title": "RefreshRequest",
+        "type": "object"
+      },
+      "RefreshResponse": {
+        "properties": {
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "ok": {
+            "title": "Ok",
+            "type": "boolean"
+          },
+          "rows": {
+            "title": "Rows",
+            "type": "integer"
+          },
+          "tickers": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Tickers",
+            "type": "array"
+          }
+        },
+        "required": [
+          "ok",
+          "tickers",
+          "rows",
+          "message"
+        ],
+        "title": "RefreshResponse",
+        "type": "object"
+      },
+      "ReturnKind": {
+        "enum": [
+          "simple",
+          "log"
+        ],
+        "title": "ReturnKind",
+        "type": "string"
+      },
+      "ReturnsResponse": {
+        "properties": {
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/SeriesMeta"
+          },
+          "series": {
+            "items": {
+              "$ref": "#/components/schemas/Point"
+            },
+            "title": "Series",
+            "type": "array"
+          },
+          "ticker": {
+            "title": "Ticker",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticker",
+          "kind",
+          "series",
+          "meta"
+        ],
+        "title": "ReturnsResponse",
+        "type": "object"
+      },
+      "RollingResponse": {
+        "properties": {
+          "annualized": {
+            "title": "Annualized",
+            "type": "boolean"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/SeriesMeta"
+          },
+          "series": {
+            "items": {
+              "$ref": "#/components/schemas/Point"
+            },
+            "title": "Series",
+            "type": "array"
+          },
+          "stat": {
+            "title": "Stat",
+            "type": "string"
+          },
+          "ticker": {
+            "title": "Ticker",
+            "type": "string"
+          },
+          "window": {
+            "title": "Window",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "ticker",
+          "stat",
+          "window",
+          "annualized",
+          "series",
+          "meta"
+        ],
+        "title": "RollingResponse",
+        "type": "object"
+      },
+      "RollingStat": {
+        "enum": [
+          "vol",
+          "mean",
+          "sharpe"
+        ],
+        "title": "RollingStat",
+        "type": "string"
+      },
+      "SeriesMeta": {
+        "description": "Honest provenance/shape: where it came from, how big, whether it was downsampled.",
+        "properties": {
+          "downsampled": {
+            "default": false,
+            "title": "Downsampled",
+            "type": "boolean"
+          },
+          "empty": {
+            "default": false,
+            "title": "Empty",
+            "type": "boolean"
+          },
+          "end": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End"
+          },
+          "n_raw": {
+            "default": 0,
+            "title": "N Raw",
+            "type": "integer"
+          },
+          "n_returned": {
+            "default": 0,
+            "title": "N Returned",
+            "type": "integer"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          },
+          "start": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start"
+          }
+        },
+        "title": "SeriesMeta",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "description": "Bloomberg-style research terminal API over quant_core.",
+    "title": "command_center",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/v1/beta/{ticker}": {
+      "get": {
+        "operationId": "getBeta",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ticker",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Z0-9.\\-]{1,15}$",
+              "title": "Ticker",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "benchmark",
+            "required": false,
+            "schema": {
+              "default": "SPY",
+              "title": "Benchmark",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Start"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End"
+            }
+          },
+          {
+            "in": "query",
+            "name": "window",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 2,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Window"
+            }
+          },
+          {
+            "in": "query",
+            "name": "kind",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/ReturnKind",
+              "default": "log"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Beta"
+      }
+    },
+    "/api/v1/catalog": {
+      "get": {
+        "operationId": "getCatalog",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "source",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Source"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Catalog Route"
+      }
+    },
+    "/api/v1/catalog/{ticker}/coverage": {
+      "get": {
+        "operationId": "getCoverage",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ticker",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Z0-9.\\-]{1,15}$",
+              "title": "Ticker",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "interval",
+            "required": false,
+            "schema": {
+              "default": "1d",
+              "title": "Interval",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "calendar",
+            "required": false,
+            "schema": {
+              "default": "NYSE",
+              "title": "Calendar",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CoverageOut"
+                  },
+                  "title": "Response Getcoverage",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Coverage Route"
+      }
+    },
+    "/api/v1/corporate-actions/{ticker}": {
+      "get": {
+        "operationId": "getCorporateActions",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ticker",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Z0-9.\\-]{1,15}$",
+              "title": "Ticker",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Start"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End"
+            }
+          },
+          {
+            "in": "query",
+            "name": "interval",
+            "required": false,
+            "schema": {
+              "default": "1d",
+              "title": "Interval",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "source",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Source"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CorporateActionsResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Corporate Actions"
+      }
+    },
+    "/api/v1/correlation": {
+      "get": {
+        "operationId": "getCorrelation",
+        "parameters": [
+          {
+            "description": "comma-separated tickers",
+            "in": "query",
+            "name": "tickers",
+            "required": true,
+            "schema": {
+              "description": "comma-separated tickers",
+              "title": "Tickers",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Start"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End"
+            }
+          },
+          {
+            "in": "query",
+            "name": "kind",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/ReturnKind",
+              "default": "log"
+            }
+          },
+          {
+            "in": "query",
+            "name": "field",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Field",
+              "default": "adj_close"
+            }
+          },
+          {
+            "in": "query",
+            "name": "method",
+            "required": false,
+            "schema": {
+              "default": "pearson",
+              "title": "Method",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cluster",
+            "required": false,
+            "schema": {
+              "default": true,
+              "title": "Cluster",
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "interval",
+            "required": false,
+            "schema": {
+              "default": "1d",
+              "title": "Interval",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CorrelationResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Correlation"
+      }
+    },
+    "/api/v1/distribution/{ticker}": {
+      "get": {
+        "operationId": "getDistribution",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ticker",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Z0-9.\\-]{1,15}$",
+              "title": "Ticker",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Start"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End"
+            }
+          },
+          {
+            "in": "query",
+            "name": "kind",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/ReturnKind",
+              "default": "log"
+            }
+          },
+          {
+            "in": "query",
+            "name": "field",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Field",
+              "default": "adj_close"
+            }
+          },
+          {
+            "in": "query",
+            "name": "bins",
+            "required": false,
+            "schema": {
+              "default": "fd",
+              "title": "Bins",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "qq",
+            "required": false,
+            "schema": {
+              "default": true,
+              "title": "Qq",
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "normality",
+            "required": false,
+            "schema": {
+              "default": true,
+              "title": "Normality",
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DistributionResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Distribution"
+      }
+    },
+    "/api/v1/meta": {
+      "get": {
+        "operationId": "getMeta",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetaOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Meta"
+      }
+    },
+    "/api/v1/ohlcv/{ticker}": {
+      "get": {
+        "operationId": "getOhlcv",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ticker",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Z0-9.\\-]{1,15}$",
+              "title": "Ticker",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Start"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End"
+            }
+          },
+          {
+            "in": "query",
+            "name": "interval",
+            "required": false,
+            "schema": {
+              "default": "1d",
+              "title": "Interval",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "source",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Source"
+            }
+          },
+          {
+            "in": "query",
+            "name": "max_points",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Max Points"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OHLCVResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Ohlcv"
+      }
+    },
+    "/api/v1/performance": {
+      "get": {
+        "operationId": "getPerformance",
+        "parameters": [
+          {
+            "description": "comma-separated tickers",
+            "in": "query",
+            "name": "tickers",
+            "required": true,
+            "schema": {
+              "description": "comma-separated tickers",
+              "title": "Tickers",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Start"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End"
+            }
+          },
+          {
+            "in": "query",
+            "name": "field",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Field",
+              "default": "adj_close"
+            }
+          },
+          {
+            "in": "query",
+            "name": "base",
+            "required": false,
+            "schema": {
+              "default": 100.0,
+              "title": "Base",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "interval",
+            "required": false,
+            "schema": {
+              "default": "1d",
+              "title": "Interval",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PerformanceResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Performance"
+      }
+    },
+    "/api/v1/refresh": {
+      "post": {
+        "description": "Best-effort LOCAL fetch into the cache via quant_core (never used in CI; yfinance is best-effort).",
+        "operationId": "refresh",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/RefreshRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefreshResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Refresh Route"
+      }
+    },
+    "/api/v1/returns/{ticker}": {
+      "get": {
+        "operationId": "getReturns",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ticker",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Z0-9.\\-]{1,15}$",
+              "title": "Ticker",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Start"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End"
+            }
+          },
+          {
+            "in": "query",
+            "name": "kind",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/ReturnKind",
+              "default": "log"
+            }
+          },
+          {
+            "in": "query",
+            "name": "field",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Field",
+              "default": "adj_close"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnsResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Returns"
+      }
+    },
+    "/api/v1/rolling/{ticker}": {
+      "get": {
+        "operationId": "getRolling",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ticker",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Z0-9.\\-]{1,15}$",
+              "title": "Ticker",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Start"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End"
+            }
+          },
+          {
+            "in": "query",
+            "name": "window",
+            "required": false,
+            "schema": {
+              "default": 21,
+              "minimum": 2,
+              "title": "Window",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "stat",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/RollingStat",
+              "default": "vol"
+            }
+          },
+          {
+            "in": "query",
+            "name": "annualize",
+            "required": false,
+            "schema": {
+              "default": true,
+              "title": "Annualize",
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "rf",
+            "required": false,
+            "schema": {
+              "default": 0.0,
+              "title": "Rf",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "kind",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/ReturnKind",
+              "default": "log"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RollingResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Rolling"
+      }
+    },
+    "/healthz": {
+      "get": {
+        "operationId": "healthz",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Healthz",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Healthz",
+        "tags": [
+          "health"
+        ]
+      }
+    }
+  }
+}

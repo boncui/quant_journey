@@ -1,0 +1,48 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# --- uv / environments ---
+.venv/
+# NOTE: uv.lock is intentionally COMMITTED (reproducibility across the 100-project journey).
+# Do NOT add uv.lock here.
+
+# --- Per-project generated artifacts (data & charts are never committed; see yfinance ToS) ---
+# Ignore the CONTENTS but keep the (empty) dirs tracked via their .gitkeep placeholders.
+[0-9][0-9][0-9]_*/data/*
+[0-9][0-9][0-9]_*/reports/*
+![0-9][0-9][0-9]_*/data/.gitkeep
+![0-9][0-9][0-9]_*/reports/.gitkeep
+*.parquet
+*.csv
+*.duckdb
+*.db
+
+# --- command_center webapp ---
+command_center/frontend/node_modules/
+command_center/frontend/dist/
+command_center/backend/.cc_seed/
+# NOTE: command_center/backend/openapi.json and frontend/src/lib/api/schema.d.ts ARE committed
+# (the API contract); frontend/package-lock.json and backend/uv.lock are committed too.
+
+# --- Secrets ---
+.env
+.env.*
+!.env.example
+
+# --- Obsidian vault (memory layer; synced via obsidian-git) ---
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.obsidian/cache.json
+.trash/
+
+# --- OS / editor ---
+.DS_Store
+.idea/
+.vscode/
+*.swp

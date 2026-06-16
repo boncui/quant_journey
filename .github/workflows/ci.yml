@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+# A change to quant_core fans out to every project here: the matrix tests all members on
+# every push/PR. Once the project count grows, narrow PR runs with path filters and move
+# heavy/torch + live-network jobs to a nightly schedule (they must stay CPU/offline here).
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    outputs:
+      members: ${{ steps.set.outputs.members }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: set
+        name: Discover quant_core + project dirs + command_center backend
+        run: |
+          # Strip only the TRAILING slash (s#/$##) so nested paths like command_center/backend survive.
+          members=$(printf '%s\n' quant_core [0-9][0-9][0-9]_*/ command_center/backend \
+            | sed 's#/$##' | jq -R . | jq -cs .)
+          echo "members=$members" >> "$GITHUB_OUTPUT"
+          echo "Matrix: $members"
+
+  test:
+    needs: discover
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        member: ${{ fromJSON(needs.discover.outputs.members) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: "${{ matrix.member }}/uv.lock"
+      - name: Sync (locked — fails loudly on lock drift)
+        working-directory: ${{ matrix.member }}
+        run: uv sync --locked
+      - name: Lint
+        working-directory: ${{ matrix.member }}
+        run: uv run ruff check .
+      - name: Test (offline)
+        working-directory: ${{ matrix.member }}
+        run: uv run pytest
+
+  import-boundary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Forbid cross-project references
+        run: |
+          # Project folders start with a digit, so they cannot be imported as modules.
+          # Guard against the realistic leak: a relative-path / sys.path hack into a sibling
+          # project (e.g. "../012_event_driven_backtester"), or an import naming one.
+          if grep -rnE '\.\./[0-9]{3}_|(import|from)[[:space:]]+_*[0-9]{3}_' \
+               --include='*.py' [0-9][0-9][0-9]_*/ 2>/dev/null; then
+            echo "::error::Cross-project references are forbidden — graduate shared logic into quant_core."
+            exit 1
+          fi
+          echo "OK: no cross-project references."

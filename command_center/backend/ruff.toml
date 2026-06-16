@@ -1,0 +1,7 @@
+# Inherits the repo-wide lint/format config and adds backend-specific allowances.
+extend = "../../ruff.toml"
+
+[lint]
+# FastAPI's dependency-injection style puts Depends()/Query()/Path() in argument defaults — that is
+# the idiomatic, documented pattern, not a mutable-default bug. B008 is a false positive here.
+extend-ignore = ["B008"]
