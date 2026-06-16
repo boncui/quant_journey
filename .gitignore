@@ -34,13 +34,6 @@ command_center/backend/.cc_seed/
 .env.*
 !.env.example
 
-# --- Obsidian vault (memory layer; synced via obsidian-git) ---
-.obsidian/workspace.json
-.obsidian/workspace-mobile.json
-.obsidian/cache
-.obsidian/cache.json
-.trash/
-
 # --- OS / editor ---
 .DS_Store
 .idea/
