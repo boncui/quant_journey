@@ -1,6 +1,6 @@
 # 01 \- Introduction
 
-PROJECT ALPHA → QAIZEN: AI QUANT FIRM
+PPROJECT ALPHA → QAIZEN: AI QUANT FIRM
 
 Carlton King & David Cui  
 Started 6/09/2026 · last restructured 2026-06-15
@@ -941,4 +941,3 @@ Rigor flags:
 \- Go-No-Go gate numbers still proposed — fine for now, must freeze before \#92 (Spring 2027).  
 \- David's technical background uncharacterized — his lane (4, 10, 15, 20\) is provisional.  
 THE NEXT ACTION: Stand up the GitHub monorepo \+ core/ skeleton, then start project \#1 — the market data downloader behind a provider-abstraction layer (LSEG \+ free fallback, DuckDB/Parquet cache, point-in-time). It's the dependency for everything else.
-
