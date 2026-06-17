@@ -1,6 +1,6 @@
 # 01 \- Introduction
 
-PPROJECT ALPHA → QAIZEN: AI QUANT FIRM
+PROJECT ALPHA → QAIZEN: AI QUANT FIRM
 
 Carlton King & David Cui  
 Started 6/09/2026 · last restructured 2026-06-15
