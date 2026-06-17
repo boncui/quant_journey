@@ -2,7 +2,7 @@ name: Sync Google Doc
 
 on:
   schedule:
-    - cron: "*/30 * * * *"   # every 30 min
+    - cron: "*/5 * * * *"   # every 5 min
   workflow_dispatch:          # manual run button
 
 jobs:
