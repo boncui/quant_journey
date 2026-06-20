@@ -883,7 +883,7 @@ No threshold above changes after this date without a new pre-registration \+ fre
 # Courses
 
 - [ ] [https://www.quantguide.io/](https://www.quantguide.io/)  
-- [ ] 
+- [ ] [https://www.quantconnect.com/learning](https://www.quantconnect.com/learning)
 
 # Projects
 
